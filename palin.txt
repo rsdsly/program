@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+main()
+{
+int p[2];
+int p1,len,j,i,x=0;
+char str[20];
+pipe(p);
+printf("\nEnter the string\n");
+scanf("%s",str);
+write(p[1],str,20);
+p1=fork();
+if(p1==0)
+{
+        read(p[0],str,20);
+        len=strlen(str);
+        j=len-1;
+        for(i=0;i<len/2;i++)
+        {
+         if(str[i]!=str[j])
+                {
+                 x=1;
+                 break;
+
+                }
+        j--;
+        }
+if(x==1)
+ printf("\nThe string is not palindrome");
+else
+ printf("\nThe string is palindrome");
+}
+}
